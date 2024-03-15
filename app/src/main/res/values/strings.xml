@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Swol</string>
-    <string name="search">search</string>
-    <string name="search_hint">hint</string>
+    <string name="search">Search</string>
+    <string name="search_hint">Enter Your Exercise...</string>
+    <string name="reps_hint">Reps</string>
+    <string name="sets_hint">Sets</string>
+    <string name="weight_hint">Weight</string>
+    <string name="save">Save</string>
 </resources>

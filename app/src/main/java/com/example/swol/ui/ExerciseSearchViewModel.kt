@@ -1,4 +1,4 @@
-package com.example.swol
+package com.example.swol.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,7 +9,7 @@ import com.example.swol.data.FilteredExercises
 import com.example.swol.data.WgerExerciseService
 import kotlinx.coroutines.launch
 
-class ExerciseViewModel : ViewModel() {
+class ExerciseSearchViewModel : ViewModel() {
     private val repository = FilteredExercisesRepository(WgerExerciseService.create())
     private val _exerciseApiResults = MutableLiveData<FilteredExercises?>()
     val exerciseApiResults: LiveData<FilteredExercises?> = _exerciseApiResults
