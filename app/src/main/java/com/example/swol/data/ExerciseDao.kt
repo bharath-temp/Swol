@@ -12,4 +12,7 @@ interface ExerciseDao {
     suspend fun insert(exercise: ExerciseEntity)
     @Query("SELECT * FROM ExerciseEntity WHERE date >= :startOfDay AND date < :endOfDay")
     fun getExercisesForDay(startOfDay: Long, endOfDay: Long): Flow<List<ExerciseEntity>>
+
+    @Query("SELECT DISTINCT category FROM ExerciseEntity")
+    fun getUniqueCategories(): Flow<List<String>>
 }

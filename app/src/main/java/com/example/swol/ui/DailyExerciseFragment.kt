@@ -103,7 +103,7 @@ class DailyExerciseFragment : Fragment(R.layout.fragment_daily_exercise_summary)
         val startOfDay = getStartOfDay(date.time)
         val endOfDay = getEndOfDay(date.time)
 
-        dbViewModel.getExercisesForDay(startOfDay, endOfDay).observe(viewLifecycleOwner) { exercises ->
+        dbViewModel.getExercisesForPeriod(startOfDay, endOfDay).observe(viewLifecycleOwner) { exercises ->
             exerciseAdapter.submitList(exercises)
         }
     }

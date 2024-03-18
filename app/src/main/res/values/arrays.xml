@@ -8,4 +8,9 @@
         <item>@string/pref_units_val_lbs</item>
         <item>@string/pref_units_val_kgs</item>
     </string-array>
+    <string-array name="time_ranges_array">
+        <item>Week</item>
+        <item>Month</item>
+        <item>3 Months</item>
+    </string-array>
 </resources>

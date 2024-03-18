@@ -20,6 +20,7 @@ class ExerciseDBViewModel(application: Application) : AndroidViewModel(applicati
         }
     }
 
-    fun getExercisesForDay(startOfDay: Long, endOfDay: Long) = repository.getExercisesForDay(startOfDay, endOfDay).asLiveData()
+    fun getExercisesForPeriod(startOfDay: Long, endOfDay: Long) = repository.getExercisesForDay(startOfDay, endOfDay).asLiveData()
 
+    fun getUniqueCategories() = repository.getUniqueCategories().asLiveData()
 }
