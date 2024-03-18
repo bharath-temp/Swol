@@ -21,9 +21,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.swol.R
+import com.example.swol.data.ExerciseEntity
+import com.google.android.material.snackbar.Snackbar
 
 class ExerciseSearchFragment : Fragment(R.layout.fragment_exercise_search) {
     private val viewModel: ExerciseSearchViewModel by viewModels()
+    private val dbViewModel: ExerciseDBViewModel by viewModels()
     private lateinit var exerciseSearchAdapter: ExerciseSearchAdapter
     private lateinit var exerciseListRV: RecyclerView
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -87,14 +90,22 @@ class ExerciseSearchFragment : Fragment(R.layout.fragment_exercise_search) {
 
         saveBtn.setOnClickListener {
             val selectedExercise = exerciseSearchAdapter.getSelectedItem()
-            val weight = weightET.text.toString()
-            val sets = setsET.text.toString()
-            val reps = repsET.text.toString()
+            val weight = weightET.text.toString().toFloatOrNull()
+            val sets = setsET.text.toString().toIntOrNull()
+            val reps = repsET.text.toString().toIntOrNull()
 
-            if (selectedExercise != null) {
-                Log.d("ExerciseLog", "Exercise: ${selectedExercise.name}, Category: ${selectedExercise.category}, Weight: $weight, Sets: $sets, Reps: $reps")
+            if (selectedExercise != null && weight != null && sets != null && reps != null) {
+                val exerciseEntity = ExerciseEntity(
+                    name = selectedExercise.name,
+                    category = selectedExercise.category,
+                    weight = weight,
+                    sets = sets,
+                    reps = reps
+                )
+                dbViewModel.addExercise(exerciseEntity)
+                Snackbar.make(view, "Exercise saved", Snackbar.LENGTH_SHORT).show()
             } else {
-                Log.d("ExerciseLog", "No exercise selected")
+                Snackbar.make(view, "Please fill in all fields", Snackbar.LENGTH_LONG).show()
             }
         }
     }
