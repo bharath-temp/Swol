@@ -1,15 +1,22 @@
 package com.example.swol.ui
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.swol.R
 import com.example.swol.data.ExerciseEntity
 
 class DailyExerciseAdapter(private var exercises: List<ExerciseEntity>) :
     RecyclerView.Adapter<DailyExerciseAdapter.ViewHolder>() {
+
+    fun getPreferredUnits(context: Context): String {
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        return sharedPreferences.getString("units", "lbs") ?: "lbs"
+    }
     fun submitList(newExercises: List<ExerciseEntity>) {
         exercises = newExercises
         notifyDataSetChanged()
@@ -21,10 +28,11 @@ class DailyExerciseAdapter(private var exercises: List<ExerciseEntity>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val units = getPreferredUnits(holder.itemView.context)
         val exercise = exercises[position]
         holder.nameTextView.text = exercise.name
         holder.categoryTextView.text = exercise.category
-        holder.weightTextView.text = "Weight: ${exercise.weight}"
+        holder.weightTextView.text = "Weight: ${exercise.weight} $units"
         holder.setsTextView.text = "Sets: ${exercise.sets}"
         holder.repsTextView.text = "Reps: ${exercise.reps}"
     }
@@ -40,4 +48,5 @@ class DailyExerciseAdapter(private var exercises: List<ExerciseEntity>) :
         val setsTextView: TextView = itemView.findViewById(R.id.exercise_sets)
         val repsTextView: TextView = itemView.findViewById(R.id.exercise_reps)
     }
+
 }
