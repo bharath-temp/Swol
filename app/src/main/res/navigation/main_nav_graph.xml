@@ -14,6 +14,9 @@
         <action
             android:id="@+id/navigate_to_settings"
             app:destination="@id/settings"/>
+        <action
+            android:id="@+id/navigate_to_camera"
+            app:destination="@+id/progress_camera"/>
     </fragment>
 
     <fragment
@@ -29,6 +32,15 @@
         android:id="@+id/progress_graph"
         android:name="com.example.swol.ui.ProgressGraphFragment"
         android:label="Progress Graph">
+    </fragment>
+
+    <fragment
+        android:id="@+id/progress_camera"
+        android:name="com.example.swol.ui.CameraFragment"
+        android:label="Camera Progress">
+        <action
+            android:id="@+id/navigate_to_settings"
+            app:destination="@id/settings"/>
     </fragment>
 
     <fragment
