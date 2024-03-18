@@ -40,6 +40,10 @@ class DailyExerciseAdapter(private var exercises: List<ExerciseEntity>) :
     override fun getItemCount(): Int {
         return exercises.size
     }
+    fun getExercises(): List<ExerciseEntity> {
+        return exercises
+    }
+
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nameTextView: TextView = itemView.findViewById(R.id.exercise_name)

@@ -13,9 +13,8 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.swol.R
@@ -24,11 +23,11 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
-import java.util.TimeZone
 
 class DailyExerciseFragment : Fragment(R.layout.fragment_daily_exercise_summary) {
     private lateinit var exerciseAdapter: DailyExerciseAdapter
     private val dbViewModel: ExerciseDBViewModel by viewModels()
+    private var selectedDate: Date = Calendar.getInstance().time
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val selectDateButton: Button = view.findViewById(R.id.btn_select_date)
@@ -72,7 +71,7 @@ class DailyExerciseFragment : Fragment(R.layout.fragment_daily_exercise_summary)
                 override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                     return when (menuItem.itemId) {
                         R.id.action_share -> {
-                            share()
+                            share(selectedDate)
                             true
                         }
                         R.id.action_settings -> {
@@ -88,15 +87,35 @@ class DailyExerciseFragment : Fragment(R.layout.fragment_daily_exercise_summary)
         )
     }
 
-    private fun share() {
-        //val shareText = getString(R.string.share_text, "Hello")
+    private fun getPreferredUnits(): String {
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        return sharedPreferences.getString("units", "lbs") ?: "lbs"
+    }
+
+    private fun share(selectedDate: Date) {
+        val shareText = getExerciseDetailsForSharing(selectedDate)
         val intent = Intent().apply {
             action = Intent.ACTION_SEND
-            //putExtra(Intent.EXTRA_TEXT, shareText)
-            putExtra(Intent.EXTRA_TEXT, "Hellow")
+            putExtra(Intent.EXTRA_TEXT, shareText)
             type = "text/plain"
         }
         startActivity(Intent.createChooser(intent, null))
+    }
+
+    private fun getExerciseDetailsForSharing(date: Date): String {
+        val exercises = exerciseAdapter.getExercises()
+        if (exercises.isEmpty()) {
+            return "No exercises recorded on ${SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(date)}"
+        }
+
+        val stringBuilder = StringBuilder()
+        stringBuilder.append("Exercises for ${SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(date)}:\n\n")
+
+        exercises.forEach { exercise ->
+            stringBuilder.append("${exercise.name} - ${exercise.weight} ${getPreferredUnits()}, ${exercise.sets} sets, ${exercise.reps} reps\n")
+        }
+
+        return stringBuilder.toString().trim()
     }
 
     private fun updateExerciseData(date: Date) {
