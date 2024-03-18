@@ -35,6 +35,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures{
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -69,6 +72,8 @@ dependencies {
 
     ksp("com.squareup.moshi:moshi-kotlin-codegen:1.15.0")
     ksp("androidx.room:room-compiler:2.6.1")
+
+    implementation("com.diogobernardino:williamchart:3.10.1")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

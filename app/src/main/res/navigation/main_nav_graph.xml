@@ -26,6 +26,12 @@
     </fragment>
 
     <fragment
+        android:id="@+id/progress_graph"
+        android:name="com.example.swol.ui.ProgressGraphFragment"
+        android:label="Progress Graph">
+    </fragment>
+
+    <fragment
         android:id="@+id/settings"
         android:label="Settings"
         android:name="com.example.swol.ui.SettingsFragment"/>
