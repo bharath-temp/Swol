@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/daily_exercise">
+
+    <fragment
+        android:id="@+id/daily_exercise"
+        android:name="com.example.swol.ui.DailyExerciseFragment"
+        android:label="Daily Exercise">
+        <action
+            android:id="@+id/navigate_to_exercise_search"
+            app:destination="@+id/exercise_search"/>
+        <action
+            android:id="@+id/navigate_to_settings"
+            app:destination="@id/settings"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/exercise_search"
+        android:name="com.example.swol.ui.ExerciseSearchFragment"
+        android:label="Exercise Search">
+        <action
+            android:id="@+id/navigate_to_settings"
+            app:destination="@id/settings"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/settings"
+        android:label="Settings"
+        android:name="com.example.swol.ui.SettingsFragment"/>
+
+
+</navigation>
