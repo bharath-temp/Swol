@@ -20,6 +20,12 @@ class ExerciseDBViewModel(application: Application) : AndroidViewModel(applicati
         }
     }
 
+    fun deleteExercise(exercise: ExerciseEntity){
+        viewModelScope.launch {
+            repository.deleteExercise(exercise)
+        }
+    }
+
     fun getExercisesForPeriod(startOfDay: Long, endOfDay: Long) = repository.getExercisesForDay(startOfDay, endOfDay).asLiveData()
 
     fun getUniqueCategories() = repository.getUniqueCategories().asLiveData()

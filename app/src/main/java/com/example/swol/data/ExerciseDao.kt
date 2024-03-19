@@ -1,6 +1,7 @@
 package com.example.swol.data
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -15,4 +16,7 @@ interface ExerciseDao {
 
     @Query("SELECT DISTINCT category FROM ExerciseEntity")
     fun getUniqueCategories(): Flow<List<String>>
+
+    @Delete
+    suspend fun delete(exercise: ExerciseEntity)
 }

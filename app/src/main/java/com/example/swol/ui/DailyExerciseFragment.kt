@@ -1,5 +1,6 @@
 package com.example.swol.ui
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -19,6 +20,7 @@ import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.swol.R
+import com.example.swol.data.ExerciseEntity
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -70,6 +72,10 @@ class DailyExerciseFragment : Fragment(R.layout.fragment_daily_exercise_summary)
 
         prevDayButton.setOnClickListener {
             changeDate(-1)
+        }
+
+        exerciseAdapter.onDeleteClick = { exercise ->
+            showDeleteConfirmation(exercise)
         }
 
         val menuHost: MenuHost = requireActivity()
@@ -168,6 +174,18 @@ class DailyExerciseFragment : Fragment(R.layout.fragment_daily_exercise_summary)
         view?.findViewById<Button>(R.id.btn_select_date)?.text = dateFormat.format(selectedDate)
 
         updateExerciseData(selectedDate)
+    }
+
+    private fun showDeleteConfirmation(exercise: ExerciseEntity) {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Confirm Delete")
+            .setMessage("Are you sure you want to delete this exercise?")
+            .setPositiveButton("Delete") { dialog, which ->
+                dbViewModel.deleteExercise(exercise)
+                updateExerciseData(selectedDate)
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
     }
 
 }
