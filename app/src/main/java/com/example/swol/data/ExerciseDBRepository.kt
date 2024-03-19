@@ -7,6 +7,10 @@ class ExerciseDBRepository(
 ) {
     suspend fun insertExercise(exercise: ExerciseEntity) = dao.insert(exercise)
 
+    suspend fun deleteExercise(exercise: ExerciseEntity) {
+        dao.delete(exercise)
+    }
+
     fun getExercisesForDay(startOfDay: Long, endOfDay: Long): Flow<List<ExerciseEntity>> {
         return dao.getExercisesForDay(startOfDay, endOfDay)
     }
