@@ -50,6 +50,7 @@
         app:layout_constraintTop_toBottomOf="@+id/exercise_category_dropdown"
         app:chart_smoothLine="true"
         app:chart_lineThickness="4dp"
-        app:chart_lineColor="#FF000080" />
+        app:chart_lineColor="#FF000080"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

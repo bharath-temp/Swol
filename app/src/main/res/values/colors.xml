@@ -3,7 +3,7 @@
         Color theme generated using the Material Theme Builder: https://m3.material.io/theme-builder
     -->
     <color name="seed">#6750A4</color>
-    <color name="md_theme_light_primary">#6750A4</color>
+    <color name="md_theme_light_primary">#000000</color>
     <color name="md_theme_light_onPrimary">#FFFFFF</color>
     <color name="md_theme_light_primaryContainer">#EADDFF</color>
     <color name="md_theme_light_onPrimaryContainer">#21005D</color>
@@ -60,7 +60,7 @@
     <color name="md_theme_dark_inverseOnSurface">#313033</color>
     <color name="md_theme_dark_inversePrimary">#6750A4</color>
     <color name="md_theme_dark_shadow">#000000</color>
-    <color name="md_theme_dark_surfaceTint">#D0BCFF</color>
+    <color name="md_theme_dark_surfaceTint">#000000</color>
     <color name="md_theme_dark_outlineVariant">#49454F</color>
     <color name="md_theme_dark_scrim">#000000</color>
     <color name="selected_item_background">#B2F2BB</color>

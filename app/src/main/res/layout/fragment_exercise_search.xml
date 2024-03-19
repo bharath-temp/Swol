@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <ScrollView
@@ -21,7 +21,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
-                android:hint="@string/search_hint">
+                android:hint="@string/search_hint"
+                app:boxStrokeColor="@color/black">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_search_box"
                     android:layout_width="match_parent"
@@ -70,7 +71,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="@string/weight_hint"
-                android:padding="8dp">
+                android:padding="8dp"
+                app:boxStrokeColor="@color/black">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_weight"
                     android:layout_width="match_parent"
@@ -84,7 +86,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="@string/sets_hint"
-                android:padding="8dp">
+                android:padding="8dp"
+                app:boxStrokeColor="@color/black">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_sets"
                     android:layout_width="match_parent"
@@ -98,7 +101,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="@string/reps_hint"
-                android:padding="8dp">
+                android:padding="8dp"
+                app:boxStrokeColor="@color/black">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_reps"
                     android:layout_width="match_parent"
