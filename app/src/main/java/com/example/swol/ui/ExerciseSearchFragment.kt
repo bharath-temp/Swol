@@ -72,10 +72,6 @@ class ExerciseSearchFragment : Fragment(R.layout.fragment_exercise_search) {
 
                 override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                     return when (menuItem.itemId) {
-                        R.id.action_share -> {
-                            share()
-                            true
-                        }
                         R.id.action_settings -> {
                             findNavController().navigate(R.id.navigate_to_settings)
                             true

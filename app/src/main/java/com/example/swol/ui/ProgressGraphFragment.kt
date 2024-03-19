@@ -1,6 +1,5 @@
 package com.example.swol.ui
 
-import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,11 +10,9 @@ import android.widget.AutoCompleteTextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import com.db.williamchart.view.LineChartView
 import com.example.swol.R
 import com.example.swol.data.ExerciseEntity
-import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -35,6 +32,7 @@ class ProgressGraphFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
         lineChart = view.findViewById(R.id.lineChart)
         timeRangeAutocomplete = view.findViewById(R.id.time_range_autocomplete)
@@ -47,21 +45,11 @@ class ProgressGraphFragment : Fragment() {
         )
         timeRangeAutocomplete.setAdapter(timeRangeAdapter)
         timeRangeAutocomplete.setOnItemClickListener { _, _, position, _ ->
-            val selectedTimeRange = timeRangeAdapter.getItem(position)
-            val (startOfDay, endOfDay) = getTimeRange(selectedTimeRange.toString())
-            viewModel.getExercisesForPeriod(startOfDay, endOfDay).observe(viewLifecycleOwner) { exercises ->
-                updateChart(exercises)
-                updateCategoryDropdown(exercises.map { it.category }.distinct())
-            }
+             updateChartData()
         }
 
         exerciseCategoryAutocomplete.setOnItemClickListener { _, _, position, _ ->
-            val selectedTimeRange = timeRangeAdapter.getItem(position)
-            val (startOfDay, endOfDay) = getTimeRange(selectedTimeRange.toString())
-            viewModel.getExercisesForPeriod(startOfDay, endOfDay).observe(viewLifecycleOwner) { exercises ->
-                updateChart(exercises)
-                updateCategoryDropdown(exercises.map { it.category }.distinct())
-            }
+            updateChartData()
         }
 
         viewModel.getUniqueCategories().observe(viewLifecycleOwner) { categories ->
@@ -69,7 +57,7 @@ class ProgressGraphFragment : Fragment() {
         }
     }
 
-    private fun updateChart(exercises: List<ExerciseEntity>) {
+    private fun updateChart(exercises: List<ExerciseEntity>, selectedTimeRange: String) {
         val category = exerciseCategoryAutocomplete.text.toString()
         val dateFormat = SimpleDateFormat("MM/dd", Locale.getDefault()) // Define a date format
 
@@ -98,6 +86,14 @@ class ProgressGraphFragment : Fragment() {
 
         // Apply the gradient to the chart
         lineChart.gradientFillColors = gradientColors
+    }
+
+    private fun updateChartData() {
+        val selectedTimeRange = timeRangeAutocomplete.text.toString()
+        val (startOfDay, endOfDay) = getTimeRange(selectedTimeRange)
+        viewModel.getExercisesForPeriod(startOfDay, endOfDay).observe(viewLifecycleOwner) { exercises ->
+            updateChart(exercises, selectedTimeRange)
+        }
     }
 
 
