@@ -7,44 +7,49 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/time_range_dropdown"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+        style="@style/TransparentTextInputLayoutStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="#00000000"
+        android:paddingBottom="30dp">
 
         <AutoCompleteTextView
             android:id="@+id/time_range_autocomplete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="none"
-            android:textCursorDrawable="@null"/>
+            android:textCursorDrawable="@null"
+            android:hint="Select Time Period"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/exercise_category_dropdown"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+        style="@style/TransparentTextInputLayoutStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/time_range_dropdown"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingBottom="30dp">
 
         <AutoCompleteTextView
             android:id="@+id/exercise_category_autocomplete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="none"
-            android:textCursorDrawable="@null"/>
+            android:textCursorDrawable="@null"
+            android:hint="Select Workout"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.db.williamchart.view.LineChartView
         android:id="@+id/lineChart"
         android:layout_width="0dp"
-        android:layout_height="150dp"
+        android:layout_height="450dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/exercise_category_dropdown"
