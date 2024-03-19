@@ -2,7 +2,7 @@
 <menu
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
+<group>
     <item
         android:id="@+id/daily_exercise"
         android:title="@string/workouts"
@@ -23,5 +23,5 @@
         android:id="@+id/settings"
         android:title="@string/action_settings"
         android:icon="@drawable/ic_action_settings" />
-
+</group>
 </menu>
