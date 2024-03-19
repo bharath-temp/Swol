@@ -8,6 +8,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
@@ -31,6 +32,8 @@ class DailyExerciseFragment : Fragment(R.layout.fragment_daily_exercise_summary)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val selectDateButton: Button = view.findViewById(R.id.btn_select_date)
+        val nextDayButton: ImageButton = view.findViewById(R.id.id_forward)
+        val prevDayButton: ImageButton = view.findViewById(R.id.id_backward)
 
         val currentDate = Calendar.getInstance().time
         val dateFormat = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault())
@@ -59,6 +62,14 @@ class DailyExerciseFragment : Fragment(R.layout.fragment_daily_exercise_summary)
                 updateExerciseData(selectedDate)
                 Log.d("Date:", "Selected date: ${dateFormat.format(selectedDate)}")
             }
+        }
+
+        nextDayButton.setOnClickListener {
+            changeDate(1)
+        }
+
+        prevDayButton.setOnClickListener {
+            changeDate(-1)
         }
 
         val menuHost: MenuHost = requireActivity()
@@ -145,6 +156,18 @@ class DailyExerciseFragment : Fragment(R.layout.fragment_daily_exercise_summary)
         calendar.set(Calendar.SECOND, 59)
         calendar.set(Calendar.MILLISECOND, 999)
         return calendar.timeInMillis
+    }
+
+    private fun changeDate(days: Int) {
+        val calendar = Calendar.getInstance()
+        calendar.time = selectedDate
+        calendar.add(Calendar.DAY_OF_MONTH, days)
+        selectedDate = calendar.time
+
+        val dateFormat = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault())
+        view?.findViewById<Button>(R.id.btn_select_date)?.text = dateFormat.format(selectedDate)
+
+        updateExerciseData(selectedDate)
     }
 
 }
