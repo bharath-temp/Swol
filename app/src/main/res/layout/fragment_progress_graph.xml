@@ -47,6 +47,9 @@
         android:layout_height="150dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/exercise_category_dropdown"/>
+        app:layout_constraintTop_toBottomOf="@+id/exercise_category_dropdown"
+        app:chart_smoothLine="true"
+        app:chart_lineThickness="4dp"
+        app:chart_lineColor="#FF000080" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

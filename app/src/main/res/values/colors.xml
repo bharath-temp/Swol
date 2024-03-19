@@ -70,4 +70,8 @@
 
     <color name="high_temp">#F44336</color>
     <color name="low_temp">#03A9F4</color>
+
+    <color name="gradient_start_color">#6eeeff</color>
+    <color name="gradient_end_color">#8fffe3</color>
+
 </resources>
