@@ -33,11 +33,14 @@ class DailyExerciseAdapter(private var exercises: List<ExerciseEntity>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val units = getPreferredUnits(holder.itemView.context)
         val exercise = exercises[position]
+        val totalVolume = exercise.weight * exercise.sets * exercise.reps
+
         holder.nameTextView.text = exercise.name
         holder.categoryTextView.text = exercise.category
         holder.weightTextView.text = "Weight: ${exercise.weight} $units"
         holder.setsTextView.text = "Sets: ${exercise.sets}"
         holder.repsTextView.text = "Reps: ${exercise.reps}"
+        holder.totalVolumeTextView.text = "Total Volume: $totalVolume $units"
 
         holder.deleteButton.setOnClickListener {
             onDeleteClick?.invoke(exercise)
@@ -58,6 +61,7 @@ class DailyExerciseAdapter(private var exercises: List<ExerciseEntity>) :
         val weightTextView: TextView = itemView.findViewById(R.id.exercise_weight)
         val setsTextView: TextView = itemView.findViewById(R.id.exercise_sets)
         val repsTextView: TextView = itemView.findViewById(R.id.exercise_reps)
+        val totalVolumeTextView: TextView = itemView.findViewById(R.id.total_volume)
         val deleteButton: ImageButton = itemView.findViewById(R.id.btn_delete)
     }
 
