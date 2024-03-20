@@ -38,13 +38,14 @@
             android:src="@drawable/backarrow"
             android:background="?android:attr/selectableItemBackground"
             android:padding="10dp"
+            android:layout_weight="1"
             />
 
         <Button
             android:id="@+id/btn_select_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="10"
             android:backgroundTint="@color/black"
             android:textColor="@color/white"/>
 
@@ -54,7 +55,8 @@
             android:layout_height="wrap_content"
             android:src="@drawable/forwardarrow"
             android:background="?android:attr/selectableItemBackground"
-            android:padding="10dp"/>
+            android:padding="10dp"
+            android:layout_weight="1"/>
 
     </LinearLayout>
 
