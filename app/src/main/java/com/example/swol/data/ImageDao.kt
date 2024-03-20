@@ -10,6 +10,6 @@ interface ImageDao {
     @Insert
     suspend fun insertImage(imageEntity: ImageEntity)
 
-    @Query("SELECT * FROM ImageEntity")
+    @Query("SELECT * FROM ImageEntity ORDER BY id DESC")
     fun getAllImages(): Flow<List<ImageEntity>>
 }

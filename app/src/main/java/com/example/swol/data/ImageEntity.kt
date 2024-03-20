@@ -7,5 +7,6 @@ import androidx.room.PrimaryKey
 @Entity
 data class ImageEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    @ColumnInfo(name = "image_data") val imageData: ByteArray
+    @ColumnInfo(name = "image_data") val imageData: ByteArray,
+    @ColumnInfo(name = "timestamp") val timestamp: Long
 )
