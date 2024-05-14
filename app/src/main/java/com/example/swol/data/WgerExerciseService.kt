@@ -14,15 +14,15 @@ curl -X 'GET' \
 
 'https://wger.de/api/v2/exercise/search/?language=english&term=biceps'
 Token:
-a03189c511637bcdf9c1f7223d741852b87f437c
+1234556789
 
 curl -X GET https://wger.de/api/v2/workout/ \
-     -H 'Authorization: Token a03189c511637bcdf9c1f7223d741852b87f437c'
+     -H 'Authorization: Token 12345678'
  */
 interface WgerExerciseService {
     @GET("api/v2/exercise/search/")
     suspend fun searchExercise(
-        @Header("Authorization") token: String = "Token a03189c511637bcdf9c1f7223d741852b87f437c",
+        @Header("Authorization") token: String = "123456789",
         @Query("language") language: String = "english",
         @Query("term") term: String
     ): Response<FilteredExercises>
