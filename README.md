@@ -45,7 +45,7 @@ git clone https://github.com/your-username/swol-workout-tracker.git
 * **Glide**: Loading and caching images for progress pictures.
 * **WilliamChart**: For visualizing workout progress and muscle volume data.
 
-## Images
+## Figma Renditions of SWOL
 ![Main Screen](https://github.com/bharath-temp/Swol/blob/main/images/Android%20Large%20-%20Main%20Screen.png)
 
 ## License
