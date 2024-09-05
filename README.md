@@ -1,4 +1,7 @@
 # Swol Workout Tracker
+![Kotlin](https://img.shields.io/badge/kotlin-%237F52FF.svg?style=for-the-badge&logo=kotlin&logoColor=white) ![MaterialUI](https://img.shields.io/badge/Material--UI-0081CB?style=for-the-badge&logo=material-ui&logoColor=white) ![Android Studio](https://img.shields.io/badge/android%20studio-346ac1?style=for-the-badge&logo=android%20studio&logoColor=white) ![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
+
+---
 Swol is a workout tracker app built using Kotlin and the Android SDK, designed to help users track their workouts, monitor muscle volume progress, and take progress photos. The app uses a **Model-View-Controller (MVC) architecture** and integrates with the **wger API** to classify exercises by muscle group.
 
 ## Features
